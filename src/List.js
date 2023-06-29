@@ -30,12 +30,16 @@ function handleClick(item){
 }
 
 function handleUnselectAll(){
-  let updated_object = {...checked}
-  for (const territory in updated_object){
-    updated_object= {...updated_object, [territory]: false}
-    setCheck( {...checked, updated_object})
-    console.log('doing it')
+  setCheck(props.items)
+
 }
+
+function handleSelectAll(){
+  let updated_checks = {...checked}
+  for (const territory in updated_checks){
+    updated_checks[territory] = true;
+  }
+  setCheck(updated_checks)
 }
 
 
@@ -43,7 +47,7 @@ function handleUnselectAll(){
   return (
     <div>
         <div className='selection_bar'>
-            <>{count} Selected</><button >Select All</button> <button onclick={handleUnselectAll}>Unselect All</button>
+            <>{count} Selected</><button onClick={handleSelectAll} >Select All</button> <button onClick={handleUnselectAll}>Unselect All</button>
         </div>
     <div className="list">
       {Object.keys(props.items).map((item) => (
