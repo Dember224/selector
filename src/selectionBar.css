@@ -1,0 +1,7 @@
+.selection_bar {
+    border-bottom: 1px solid #979797;
+    width: 100%;
+    display: flex;
+    margin: 20px auto;
+    line-height: 24px;
+}

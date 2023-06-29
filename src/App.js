@@ -1,13 +1,13 @@
 import "./App.css";
 import { Header } from "./Header";
 import { List } from "./List";
-import { data as listItems } from "./_data";
+import data_object  from "./_data";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <List items={listItems} />
+      <List items={data_object} />
     </div>
   );
 }

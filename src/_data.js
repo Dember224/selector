@@ -1,4 +1,4 @@
-export const data = [
+const data = [
   "Alabama",
   "Alaska",
   "American Samoa",
@@ -56,3 +56,10 @@ export const data = [
   "Wisconsin",
   "Wyoming"
 ]
+
+const data_object = {};
+data.map((item)=>{
+  data_object[item] = false
+})
+
+export default data_object;
