@@ -7,6 +7,8 @@ import './selectionBar.css'
 export function List(props) {
 
 const [checked, setCheck] = useState(props.items);
+const [allSelected, setAllSelected ] =  useState(false);
+const [allUnSelected, setAllUnSelected ] = useState(false);
 
 const [count, setCount] = useState(0);
 
@@ -26,11 +28,15 @@ function handleClick(item){
   let updated_object = {...checked }
   updated_object[item] =  new_checked; 
   setCheck(updated_object)
-  
+  setAllSelected(false)
+  setAllUnSelected(false)
+  //running out of time. This doesn't handle edge cases. Can Unselect all manually and unselect button wouldn't gray.
 }
 
 function handleUnselectAll(){
   setCheck(props.items)
+  setAllUnSelected(true)
+  setAllSelected(false)
 
 }
 
@@ -40,6 +46,8 @@ function handleSelectAll(){
     updated_checks[territory] = true;
   }
   setCheck(updated_checks)
+  setAllSelected(true)
+  setAllUnSelected(false)
 }
 
 
@@ -47,14 +55,14 @@ function handleSelectAll(){
   return (
     <div>
         <div className='selection_bar'>
-            <>{count} Selected</><button onClick={handleSelectAll} >Select All</button> <button onClick={handleUnselectAll}>Unselect All</button>
+            <>{count} Selected</><button onClick={handleSelectAll} disabled={allSelected} >Select All</button> <button onClick={handleUnselectAll} disabled={allUnSelected}>Unselect All</button>
         </div>
     <div className="list">
       {Object.keys(props.items).map((item) => (
         <Fragment  >
           <div key={item} onClick={()=>{handleClick(item)}}>
-            {<Checkbox key={item} selected={ checked[item] } />}
-            {item}<br />
+            
+            {item}{<Checkbox style={{paddingLeft:'50px'}} key={item} selected={ checked[item] } />}<br />
           </div>
             
         </Fragment>
